@@ -1,0 +1,44 @@
+# --- Python ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# --- Lab artefacts that must not be committed ------------------------------
+# Captures, scan output and exploit transcripts can contain hostnames, IPs
+# and hashes. Commit curated reports under reports/, never raw output.
+*.pcap
+*.pcapng
+*.har
+scans/raw/
+loot/
+
+# --- Local lab databases and runtime state ---------------------------------
+*.sqlite3
+*.db
+task-3/vulnerable/data/
+task-3/_smoketest/
+
+# --- Logs and runtime ------------------------------------------------------
+*.log
+!task-5/samples/access.log
+*.pid
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# --- Recordings: submitted through LinkedIn, never committed ---------------
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+# --- Editor and OS noise ---------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini

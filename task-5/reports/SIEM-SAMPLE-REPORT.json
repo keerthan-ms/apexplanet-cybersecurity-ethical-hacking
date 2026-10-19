@@ -1,0 +1,504 @@
+{
+  "tool": "apexplanet-mini-siem",
+  "version": "1.0.0",
+  "sources": {
+    "mode": "samples",
+    "security": [
+      "task-5/samples/security.jsonl"
+    ],
+    "access": "task-5/samples/access.log"
+  },
+  "parsing": {
+    "security": [
+      {
+        "path": "task-5/samples/security.jsonl",
+        "lines": 23,
+        "valid": 23,
+        "skipped": 0,
+        "errors": []
+      }
+    ],
+    "access": {
+      "path": "task-5/samples/access.log",
+      "lines": 25,
+      "valid": 25,
+      "skipped": 0,
+      "errors": []
+    }
+  },
+  "generated_at": "2026-10-19T17:49:55+00:00",
+  "summary": {
+    "total_events": 23,
+    "analyzed_events": 23,
+    "suppressed_allowlisted": 0,
+    "alerts": 10,
+    "compromise_alerts": 6,
+    "mitigated_alerts": 4,
+    "mitigated_events": 7,
+    "filtered_out_by_severity": 0,
+    "severity": {
+      "critical": 0,
+      "high": 5,
+      "medium": 1,
+      "low": 4
+    },
+    "by_rule": {
+      "AUTH-001": 1,
+      "CSRF-001": 1,
+      "CSRF-002": 1,
+      "LFI-001": 1,
+      "LFI-002": 1,
+      "SQLI-001": 1,
+      "SQLI-002": 1,
+      "XSS-001": 1,
+      "XSS-002": 1,
+      "XSS-003": 1
+    },
+    "corroborated_alerts": 10,
+    "benign_events": 4,
+    "admin_action_events": 2,
+    "auth_success_events": 1,
+    "first_seen": "2026-10-19T23:18:43+05:30",
+    "last_seen": "2026-10-19T23:18:44+05:30"
+  },
+  "alerts": [
+    {
+      "rule_id": "XSS-001",
+      "severity": "high",
+      "title": "Reflected cross-site scripting payload",
+      "first_seen": "2026-10-19T23:18:43+05:30",
+      "last_seen": "2026-10-19T23:18:43+05:30",
+      "count": 1,
+      "source_ip": "127.0.0.1",
+      "user": null,
+      "events": [
+        {
+          "ts": "2026-10-19T23:18:43+05:30",
+          "ip": "127.0.0.1",
+          "event": "xss_reflected",
+          "path": "/vuln/xss?name=%3Cscript%3Ewindow.__xss%3D1%3C%2Fscript%3E",
+          "detail": "<script>window.__xss=1</script>"
+        }
+      ],
+      "mitre": [
+        "T1059.007"
+      ],
+      "recommendation": "HTML-encode at the output sink with htmlspecialchars(ENT_QUOTES) and add a Content-Security-Policy as defence in depth.",
+      "confidence": "high",
+      "mitigated": false,
+      "category": "xss",
+      "capec": [
+        "CAPEC-591"
+      ],
+      "http_statuses": [
+        200
+      ],
+      "corroborated": true
+    },
+    {
+      "rule_id": "XSS-002",
+      "severity": "high",
+      "title": "Stored cross-site scripting payload",
+      "first_seen": "2026-10-19T23:18:43+05:30",
+      "last_seen": "2026-10-19T23:18:43+05:30",
+      "count": 1,
+      "source_ip": "127.0.0.1",
+      "user": "attacker",
+      "events": [
+        {
+          "ts": "2026-10-19T23:18:43+05:30",
+          "ip": "127.0.0.1",
+          "event": "xss_stored",
+          "path": "/vuln/xss",
+          "detail": "<svg onload=alert('stored-xss')><!--stored-1792432123-->",
+          "user": "attacker"
+        }
+      ],
+      "mitre": [
+        "T1059.007"
+      ],
+      "recommendation": "Encode on output, not on input; stored payloads affect every later viewer. Audit existing rows and add a CSP.",
+      "confidence": "high",
+      "mitigated": false,
+      "category": "xss",
+      "capec": [
+        "CAPEC-592"
+      ],
+      "http_statuses": [
+        200
+      ],
+      "corroborated": true
+    },
+    {
+      "rule_id": "AUTH-001",
+      "severity": "high",
+      "title": "Repeated authentication failures",
+      "first_seen": "2026-10-19T23:18:44+05:30",
+      "last_seen": "2026-10-19T23:18:44+05:30",
+      "count": 5,
+      "source_ip": "127.0.0.1",
+      "user": "admin",
+      "events": [
+        {
+          "ts": "2026-10-19T23:18:44+05:30",
+          "ip": "127.0.0.1",
+          "event": "auth_fail",
+          "path": "/vuln/sqli",
+          "detail": "user=admin",
+          "user": "admin"
+        },
+        {
+          "ts": "2026-10-19T23:18:44+05:30",
+          "ip": "127.0.0.1",
+          "event": "auth_fail",
+          "path": "/vuln/sqli",
+          "detail": "user=admin",
+          "user": "admin"
+        },
+        {
+          "ts": "2026-10-19T23:18:44+05:30",
+          "ip": "127.0.0.1",
+          "event": "auth_fail",
+          "path": "/vuln/sqli",
+          "detail": "user=admin",
+          "user": "admin"
+        },
+        {
+          "ts": "2026-10-19T23:18:44+05:30",
+          "ip": "127.0.0.1",
+          "event": "auth_fail",
+          "path": "/vuln/sqli",
+          "detail": "user=admin",
+          "user": "admin"
+        },
+        {
+          "ts": "2026-10-19T23:18:44+05:30",
+          "ip": "127.0.0.1",
+          "event": "auth_fail",
+          "path": "/vuln/sqli",
+          "detail": "user=admin",
+          "user": "admin"
+        }
+      ],
+      "mitre": [
+        "T1110.001"
+      ],
+      "recommendation": "Confirm with the account owner, then apply rate limiting, lockout with backoff, and MFA. Check for spraying across many usernames.",
+      "confidence": "high",
+      "mitigated": false,
+      "category": "auth",
+      "capec": [
+        "CAPEC-49"
+      ],
+      "http_statuses": [
+        200
+      ],
+      "corroborated": true
+    },
+    {
+      "rule_id": "CSRF-001",
+      "severity": "high",
+      "title": "State-changing request without a valid CSRF token",
+      "first_seen": "2026-10-19T23:18:44+05:30",
+      "last_seen": "2026-10-19T23:18:44+05:30",
+      "count": 1,
+      "source_ip": "127.0.0.1",
+      "user": "demo",
+      "events": [
+        {
+          "ts": "2026-10-19T23:18:44+05:30",
+          "ip": "127.0.0.1",
+          "event": "csrf_missing",
+          "path": "/vuln/csrf",
+          "detail": "form=update_email; token=absent",
+          "user": "demo"
+        }
+      ],
+      "mitre": [],
+      "recommendation": "Require a session-bound random token compared with hash_equals() before any write; keep cookies HttpOnly and SameSite.",
+      "confidence": "high",
+      "mitigated": false,
+      "category": "csrf",
+      "capec": [
+        "CAPEC-62"
+      ],
+      "http_statuses": [
+        200
+      ],
+      "corroborated": true
+    },
+    {
+      "rule_id": "LFI-001",
+      "severity": "high",
+      "title": "Path traversal / local file inclusion attempt",
+      "first_seen": "2026-10-19T23:18:44+05:30",
+      "last_seen": "2026-10-19T23:18:44+05:30",
+      "count": 2,
+      "source_ip": "127.0.0.1",
+      "user": null,
+      "events": [
+        {
+          "ts": "2026-10-19T23:18:44+05:30",
+          "ip": "127.0.0.1",
+          "event": "lfi_attempt",
+          "path": "/vuln/lfi?file=..%2Fprivate%2Fflag.txt",
+          "detail": "../private/flag.txt"
+        },
+        {
+          "ts": "2026-10-19T23:18:44+05:30",
+          "ip": "127.0.0.1",
+          "event": "lfi_attempt",
+          "path": "/vuln/lfi?file=..%2F..%2F..%2FREADME.md",
+          "detail": "../../../README.md"
+        }
+      ],
+      "mitre": [
+        "T1190",
+        "T1005"
+      ],
+      "recommendation": "Never build filesystem paths from user input. Map an identifier to a fixed filename and verify realpath() stays inside the base directory.",
+      "confidence": "high",
+      "mitigated": false,
+      "category": "lfi",
+      "capec": [
+        "CAPEC-126"
+      ],
+      "http_statuses": [
+        200,
+        403
+      ],
+      "corroborated": true
+    },
+    {
+      "rule_id": "SQLI-001",
+      "severity": "medium",
+      "title": "SQL injection attempts against a vulnerable route",
+      "first_seen": "2026-10-19T23:18:43+05:30",
+      "last_seen": "2026-10-19T23:18:43+05:30",
+      "count": 2,
+      "source_ip": "127.0.0.1",
+      "user": "admin' --",
+      "events": [
+        {
+          "ts": "2026-10-19T23:18:43+05:30",
+          "ip": "127.0.0.1",
+          "event": "sqli_attempt",
+          "path": "/vuln/sqli",
+          "detail": "login username=admin' -- [password submitted]",
+          "user": "admin' --"
+        },
+        {
+          "ts": "2026-10-19T23:18:43+05:30",
+          "ip": "127.0.0.1",
+          "event": "sqli_attempt",
+          "path": "/vuln/sqli?q=%27+UNION+SELECT+999%2C+username%2C+password_hash%2C+%27leaked%27+FROM+users+--+",
+          "detail": "' UNION SELECT 999, username, password_hash, 'leaked' FROM users --"
+        }
+      ],
+      "mitre": [
+        "T1190"
+      ],
+      "recommendation": "Use parameterised queries (PDO prepared statements), remove string concatenation, and review the affected endpoint for data exposure.",
+      "confidence": "high",
+      "mitigated": false,
+      "category": "sqli",
+      "capec": [
+        "CAPEC-66"
+      ],
+      "http_statuses": [
+        200
+      ],
+      "corroborated": true
+    },
+    {
+      "rule_id": "SQLI-002",
+      "severity": "low",
+      "title": "Blocked SQL injection attempts",
+      "first_seen": "2026-10-19T23:18:43+05:30",
+      "last_seen": "2026-10-19T23:18:43+05:30",
+      "count": 2,
+      "source_ip": "127.0.0.1",
+      "user": "admin' --",
+      "events": [
+        {
+          "ts": "2026-10-19T23:18:43+05:30",
+          "ip": "127.0.0.1",
+          "event": "sqli_blocked",
+          "path": "/secure/sqli",
+          "detail": "login username=admin' -- [password submitted]",
+          "user": "admin' --"
+        },
+        {
+          "ts": "2026-10-19T23:18:43+05:30",
+          "ip": "127.0.0.1",
+          "event": "sqli_blocked",
+          "path": "/secure/sqli?q=%27+UNION+SELECT+999%2C+username%2C+password_hash%2C+%27leaked%27+FROM+users+--+",
+          "detail": "' UNION SELECT 999, username, password_hash, 'leaked' FROM users --"
+        }
+      ],
+      "mitre": [
+        "T1190"
+      ],
+      "recommendation": "The prepared statement neutralised the payload. Confirm the client is authorised and keep input validation and logging in place.",
+      "confidence": "low",
+      "mitigated": true,
+      "category": "sqli",
+      "capec": [
+        "CAPEC-66"
+      ],
+      "http_statuses": [
+        200
+      ],
+      "corroborated": true
+    },
+    {
+      "rule_id": "XSS-003",
+      "severity": "low",
+      "title": "Blocked cross-site scripting attempts",
+      "first_seen": "2026-10-19T23:18:43+05:30",
+      "last_seen": "2026-10-19T23:18:44+05:30",
+      "count": 2,
+      "source_ip": "127.0.0.1",
+      "user": "attacker",
+      "events": [
+        {
+          "ts": "2026-10-19T23:18:43+05:30",
+          "ip": "127.0.0.1",
+          "event": "xss_blocked",
+          "path": "/secure/xss?name=%3Cscript%3Ewindow.__xss%3D1%3C%2Fscript%3E",
+          "detail": "<script>window.__xss=1</script>"
+        },
+        {
+          "ts": "2026-10-19T23:18:44+05:30",
+          "ip": "127.0.0.1",
+          "event": "xss_blocked",
+          "path": "/secure/xss",
+          "detail": "<svg onload=alert('stored-xss')><!--stored-1792432123-->",
+          "user": "attacker"
+        }
+      ],
+      "mitre": [
+        "T1059.007"
+      ],
+      "recommendation": "Output encoding rendered the payload inert. Keep encoding at every sink and verify no template bypasses it.",
+      "confidence": "low",
+      "mitigated": true,
+      "category": "xss",
+      "capec": [
+        "CAPEC-591"
+      ],
+      "http_statuses": [
+        200
+      ],
+      "corroborated": true
+    },
+    {
+      "rule_id": "CSRF-002",
+      "severity": "low",
+      "title": "Blocked CSRF attempts",
+      "first_seen": "2026-10-19T23:18:44+05:30",
+      "last_seen": "2026-10-19T23:18:44+05:30",
+      "count": 2,
+      "source_ip": "127.0.0.1",
+      "user": "demo",
+      "events": [
+        {
+          "ts": "2026-10-19T23:18:44+05:30",
+          "ip": "127.0.0.1",
+          "event": "csrf_blocked",
+          "path": "/secure/csrf",
+          "detail": "form=update_email",
+          "user": "demo"
+        },
+        {
+          "ts": "2026-10-19T23:18:44+05:30",
+          "ip": "127.0.0.1",
+          "event": "csrf_blocked",
+          "path": "/secure/csrf",
+          "detail": "form=update_email",
+          "user": "demo"
+        }
+      ],
+      "mitre": [],
+      "recommendation": "The token check rejected the request. Monitor the source and confirm the token is unique per session.",
+      "confidence": "low",
+      "mitigated": true,
+      "category": "csrf",
+      "capec": [
+        "CAPEC-62"
+      ],
+      "http_statuses": [
+        200,
+        403
+      ],
+      "corroborated": true
+    },
+    {
+      "rule_id": "LFI-002",
+      "severity": "low",
+      "title": "Blocked path traversal / LFI attempts",
+      "first_seen": "2026-10-19T23:18:44+05:30",
+      "last_seen": "2026-10-19T23:18:44+05:30",
+      "count": 1,
+      "source_ip": "127.0.0.1",
+      "user": null,
+      "events": [
+        {
+          "ts": "2026-10-19T23:18:44+05:30",
+          "ip": "127.0.0.1",
+          "event": "lfi_attempt",
+          "path": "/secure/lfi?file=..%2Fprivate%2Fflag.txt",
+          "detail": "blocked=1; input=../private/flag.txt"
+        }
+      ],
+      "mitre": [
+        "T1190"
+      ],
+      "recommendation": "The allowlist refused the path. Keep the allowlist narrow and log refused attempts for trend analysis.",
+      "confidence": "low",
+      "mitigated": true,
+      "category": "lfi",
+      "capec": [
+        "CAPEC-126"
+      ],
+      "http_statuses": [
+        200,
+        403
+      ],
+      "corroborated": true
+    }
+  ],
+  "false_positive_notes": [
+    "7 event(s) were blocked by a control and appear only as low-severity mitigation records; they are not evidence of a successful compromise.",
+    "Repeated authentication failures can also be a user mistyping a password or a stale client; confirm with the account owner before locking the account.",
+    "Some compromise alerts rest on a single event. A payload string can occur in legitimate text, so confirm the request in the access log and with the application owner.",
+    "Only the supplied log files were analysed; no external telemetry was contacted."
+  ],
+  "config": {
+    "thresholds": {
+      "sqli": {
+        "high": 3,
+        "critical": 6
+      },
+      "xss": {
+        "critical": 3
+      },
+      "csrf": {
+        "critical": 3
+      },
+      "lfi": {
+        "critical": 3
+      },
+      "auth_fail": {
+        "high": 5,
+        "critical": 10,
+        "window_minutes": 10
+      },
+      "mitigated": {
+        "low": 1
+      }
+    },
+    "allow_ips": [],
+    "min_severity": "low"
+  }
+}

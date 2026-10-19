@@ -1,0 +1,7 @@
+ApexPlanet Web Security Lab — public fixture
+============================================
+
+This file is safe, fake training data. It lives in task-3/fixtures/public/
+and is readable from both the vulnerable and the hardened LFI routes.
+
+Nothing here is secret, and no real system file is involved.

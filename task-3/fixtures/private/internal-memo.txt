@@ -1,0 +1,11 @@
+INTERNAL MEMO (FAKE)
+====================
+
+From: training-team
+To:   web-security-interns
+
+The flag in flag.txt exists only to prove that ../ reaches a sibling
+directory. Real applications must never place secrets next to a directory
+that a user-controlled path can reach.
+
+This memo is synthetic training content.

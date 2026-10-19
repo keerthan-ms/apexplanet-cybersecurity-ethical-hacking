@@ -1,0 +1,25 @@
+{
+  "allow_ips": [
+    "192.0.2.10"
+  ],
+  "thresholds": {
+    "sqli": {
+      "high": 3,
+      "critical": 6
+    },
+    "xss": {
+      "critical": 3
+    },
+    "csrf": {
+      "critical": 3
+    },
+    "lfi": {
+      "critical": 3
+    },
+    "auth_fail": {
+      "high": 5,
+      "critical": 10,
+      "window_minutes": 10
+    }
+  }
+}

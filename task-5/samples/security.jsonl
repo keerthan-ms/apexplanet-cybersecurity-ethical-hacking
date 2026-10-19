@@ -1,0 +1,23 @@
+{"ts":"2026-10-19T23:18:43+05:30","ip":"127.0.0.1","event":"sqli_attempt","path":"/vuln/sqli","detail":"login username=admin' -- [password submitted]","user":"admin' --"}
+{"ts":"2026-10-19T23:18:43+05:30","ip":"127.0.0.1","event":"auth_success","path":"/vuln/sqli","detail":"user=admin","user":"admin"}
+{"ts":"2026-10-19T23:18:43+05:30","ip":"127.0.0.1","event":"sqli_blocked","path":"/secure/sqli","detail":"login username=admin' -- [password submitted]","user":"admin' --"}
+{"ts":"2026-10-19T23:18:43+05:30","ip":"127.0.0.1","event":"auth_fail","path":"/secure/sqli","detail":"user=admin' --","user":"admin' --"}
+{"ts":"2026-10-19T23:18:43+05:30","ip":"127.0.0.1","event":"sqli_attempt","path":"/vuln/sqli?q=%27+UNION+SELECT+999%2C+username%2C+password_hash%2C+%27leaked%27+FROM+users+--+","detail":"' UNION SELECT 999, username, password_hash, 'leaked' FROM users --"}
+{"ts":"2026-10-19T23:18:43+05:30","ip":"127.0.0.1","event":"sqli_blocked","path":"/secure/sqli?q=%27+UNION+SELECT+999%2C+username%2C+password_hash%2C+%27leaked%27+FROM+users+--+","detail":"' UNION SELECT 999, username, password_hash, 'leaked' FROM users --"}
+{"ts":"2026-10-19T23:18:43+05:30","ip":"127.0.0.1","event":"xss_reflected","path":"/vuln/xss?name=%3Cscript%3Ewindow.__xss%3D1%3C%2Fscript%3E","detail":"<script>window.__xss=1</script>"}
+{"ts":"2026-10-19T23:18:43+05:30","ip":"127.0.0.1","event":"xss_blocked","path":"/secure/xss?name=%3Cscript%3Ewindow.__xss%3D1%3C%2Fscript%3E","detail":"<script>window.__xss=1</script>"}
+{"ts":"2026-10-19T23:18:43+05:30","ip":"127.0.0.1","event":"xss_stored","path":"/vuln/xss","detail":"<svg onload=alert('stored-xss')><!--stored-1792432123-->","user":"attacker"}
+{"ts":"2026-10-19T23:18:44+05:30","ip":"127.0.0.1","event":"xss_blocked","path":"/secure/xss","detail":"<svg onload=alert('stored-xss')><!--stored-1792432123-->","user":"attacker"}
+{"ts":"2026-10-19T23:18:44+05:30","ip":"127.0.0.1","event":"csrf_missing","path":"/vuln/csrf","detail":"form=update_email; token=absent","user":"demo"}
+{"ts":"2026-10-19T23:18:44+05:30","ip":"127.0.0.1","event":"admin_action","path":"/vuln/csrf","detail":"email changed to forged-by-cross-site@training.local","user":"demo"}
+{"ts":"2026-10-19T23:18:44+05:30","ip":"127.0.0.1","event":"csrf_blocked","path":"/secure/csrf","detail":"form=update_email","user":"demo"}
+{"ts":"2026-10-19T23:18:44+05:30","ip":"127.0.0.1","event":"csrf_blocked","path":"/secure/csrf","detail":"form=update_email","user":"demo"}
+{"ts":"2026-10-19T23:18:44+05:30","ip":"127.0.0.1","event":"admin_action","path":"/secure/csrf","detail":"email changed to validated@training.local","user":"demo"}
+{"ts":"2026-10-19T23:18:44+05:30","ip":"127.0.0.1","event":"lfi_attempt","path":"/vuln/lfi?file=..%2Fprivate%2Fflag.txt","detail":"../private/flag.txt"}
+{"ts":"2026-10-19T23:18:44+05:30","ip":"127.0.0.1","event":"lfi_attempt","path":"/vuln/lfi?file=..%2F..%2F..%2FREADME.md","detail":"../../../README.md"}
+{"ts":"2026-10-19T23:18:44+05:30","ip":"127.0.0.1","event":"lfi_attempt","path":"/secure/lfi?file=..%2Fprivate%2Fflag.txt","detail":"blocked=1; input=../private/flag.txt"}
+{"ts":"2026-10-19T23:18:44+05:30","ip":"127.0.0.1","event":"auth_fail","path":"/vuln/sqli","detail":"user=admin","user":"admin"}
+{"ts":"2026-10-19T23:18:44+05:30","ip":"127.0.0.1","event":"auth_fail","path":"/vuln/sqli","detail":"user=admin","user":"admin"}
+{"ts":"2026-10-19T23:18:44+05:30","ip":"127.0.0.1","event":"auth_fail","path":"/vuln/sqli","detail":"user=admin","user":"admin"}
+{"ts":"2026-10-19T23:18:44+05:30","ip":"127.0.0.1","event":"auth_fail","path":"/vuln/sqli","detail":"user=admin","user":"admin"}
+{"ts":"2026-10-19T23:18:44+05:30","ip":"127.0.0.1","event":"auth_fail","path":"/vuln/sqli","detail":"user=admin","user":"admin"}

@@ -1,0 +1,4 @@
+APEX{TRAINING_ONLY_fake_flag_7f3c9a}
+
+This is a synthetic flag for the Task 3 local file inclusion demonstration.
+It is not a credential, a real secret, or evidence of a breach.
