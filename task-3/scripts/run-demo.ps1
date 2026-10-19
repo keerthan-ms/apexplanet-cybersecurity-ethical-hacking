@@ -23,11 +23,12 @@ if ($Port -lt 1024 -or $Port -gt 65535) {
     throw "Port must be between 1024 and 65535."
 }
 
-$TaskRoot     = Split-Path -Parent $PSScriptRoot
-$Workspace    = Split-Path -Parent $TaskRoot
+$TaskRoot     = Split-Path -Parent $PSScriptRoot          # cybersecurity-ethical-hacking\task-3
+$RepoRoot     = Split-Path -Parent $TaskRoot              # cybersecurity-ethical-hacking
+$Workspace    = Split-Path -Parent $RepoRoot              # ApexPlanet (holds _runtime)
 $Router       = Join-Path $TaskRoot 'public\router.php'
 $DocRoot      = Join-Path $TaskRoot 'public'
-$DataDir      = Join-Path $TaskRoot 'vulnerable\data'
+$DataDir      = if ($env:APEX_DEMO_DATA_DIR) { $env:APEX_DEMO_DATA_DIR } else { Join-Path $TaskRoot 'vulnerable\data' }
 
 function Resolve-Php {
     if ($env:APEX_PHP -and (Test-Path $env:APEX_PHP)) { return $env:APEX_PHP }

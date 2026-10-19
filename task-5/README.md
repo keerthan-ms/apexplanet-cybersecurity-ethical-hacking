@@ -183,14 +183,14 @@ The complete machine-generated report is committed at
 contains the four false-positive notes, per-file parse statistics and the full
 matching event objects for every alert.
 
-Example alert shape (from that report):
+Example alert shape (abridged from that report):
 
 ```json
 {
   "rule_id": "LFI-001",
   "severity": "high",
   "title": "Path traversal / local file inclusion attempt",
-  "first_seen": "2026-10-19T23:18:43+05:30",
+  "first_seen": "2026-10-19T23:18:44+05:30",
   "last_seen": "2026-10-19T23:18:44+05:30",
   "count": 2,
   "source_ip": "127.0.0.1",
